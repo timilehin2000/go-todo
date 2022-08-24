@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/timilehin2000/go-todo/router"
 )
 
 func main() {
-	// route :=
+	route := router.Router()
 	log.Fatal(http.ListenAndServe(":8080", route))
 	fmt.Println("Server started on port 8080")
 

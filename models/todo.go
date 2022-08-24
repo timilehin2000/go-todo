@@ -2,6 +2,6 @@ package models
 
 type Todo struct {
 	ID         int    `json:"id"`
-	Title      string `json:"title"`
+	Item       string `json:"item"`
 	IsComplete bool   `json:"isDone"`
 }
