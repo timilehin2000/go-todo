@@ -1,8 +1,15 @@
 package router
 
-import "github.com/gorilla/mux"
+import (
+	"github.com/gorilla/mux"
+	"github.com/timilehin2000/go-todo/controllers"
+)
 
 func router() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/todos").Methods("GET")
+	router.HandleFunc("/todos", controllers.GetTodos).Methods("GET")
+	router.HandleFunc("/todo/{id}", controllers.GetTodo).Methods("GET")
+	// router.HandleFunc()
+
+	return router
 }

@@ -6,7 +6,7 @@ func GetTodos(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func GetTodo() {
+func GetTodo(w http.ResponseWriter, r *http.Request) {
 
 }
 
