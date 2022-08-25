@@ -52,11 +52,23 @@ func GetTodo(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func CreateTodo() {
+func AddTodo(w http.ResponseWriter, r *http.Request) {
+	db := config.LoadDB()
 
+	json.NewDecoder(r.Body).Decode(&todo)
+
+	sqlStatement := `INSERT INTO todos(item, isComplete) VALUES($1, FALSE) returning id, item, isComplete`
+
+	err := db.QueryRow(sqlStatement, todo.Item, todo.IsComplete).Scan(&todo.ID, &todo.Item, &todo.IsComplete)
+
+	if err != nil {
+		log.Println(fmt.Sprintf("error occured while doing this: %s", err))
+	}
+
+	json.NewEncoder(w).Encode(todo)
 }
 
-func UpdateTodo() {
+func CompleteTodo() {
 
 }
 

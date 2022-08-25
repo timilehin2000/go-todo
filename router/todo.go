@@ -9,7 +9,7 @@ func Router() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/todos", controllers.GetTodos).Methods("GET")
 	router.HandleFunc("/todo/{id}", controllers.GetTodo).Methods("GET")
-	// router.HandleFunc()
+	router.HandleFunc("/todo", controllers.AddTodo).Methods("POST")
 
 	return router
 }
