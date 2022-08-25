@@ -57,7 +57,9 @@ func AddTodo(w http.ResponseWriter, r *http.Request) {
 
 	json.NewDecoder(r.Body).Decode(&todo)
 
-	sqlStatement := `INSERT INTO todos(item, isComplete) VALUES($1, FALSE) returning id, item, isComplete`
+	defer db.Close()
+
+	sqlStatement := `INSERT INTO todos(item, isComplete) VALUES($1, $2) returning *`
 
 	err := db.QueryRow(sqlStatement, todo.Item, todo.IsComplete).Scan(&todo.ID, &todo.Item, &todo.IsComplete)
 
